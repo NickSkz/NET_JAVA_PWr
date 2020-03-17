@@ -1,2 +1,3 @@
 # .NET_JAVA_PWr
-Kurs .NET, Java
+Kurs Platformy programistyczne, ART Wtorek, 17-19
+M. Skubisz, P. Kołodziej
