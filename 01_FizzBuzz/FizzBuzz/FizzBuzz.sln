@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FizzBuzz", "FizzBuzz.csproj", "{E9309338-39A9-4306-847E-090A7D74345E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzz", "FizzBuzz.csproj", "{E9309338-39A9-4306-847E-090A7D74345E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FizzBuzzTester", "..\FizzBuzzTester\FizzBuzzTester.csproj", "{C950FCB6-E83F-4B60-AF8D-DD76D3E52E1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzzTester", "..\FizzBuzzTester\FizzBuzzTester.csproj", "{C950FCB6-E83F-4B60-AF8D-DD76D3E52E1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

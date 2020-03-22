@@ -6,7 +6,14 @@ namespace FizzBuzz
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            try
+            {
+                FizzBuzzer.Fizzbuzinho(null);
+            }
+            catch(NullReferenceException e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }
