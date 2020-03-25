@@ -12,6 +12,8 @@ namespace FizzBuzzTester
         {
         }
 
+
+        //Test specified for verifying especially Fizz detection.
         [Test]
         public void FizzTest()
         {
@@ -21,6 +23,7 @@ namespace FizzBuzzTester
             CollectionAssert.AreEqual(expectedResults, actualResluts);
         }
 
+        //Test specified for verifying especially Buzz detection.
         [Test]
         public void BuzzTest()
         {
@@ -30,6 +33,7 @@ namespace FizzBuzzTester
             CollectionAssert.AreEqual(expectedResults, actualResluts);
         }
 
+        //Test specified for verifying especially Buzzinga detection.
         [Test]
         public void BuzzingaTest()
         {
@@ -39,36 +43,39 @@ namespace FizzBuzzTester
             CollectionAssert.AreEqual(expectedResults, FizzBuzzer.Fizzbuzinho(numbers));
         }
 
+        //Test specified for verifying especially FizzBuzz detection.
         [Test]
         public void FizzBuzzTest()
         {
-            List<int> numbers = new List<int>() { 5, 7, 15, 24, 26, 31, 35, 325, 357, 359, 514, 532, 12451};
-            List<string> expectedResults = new List<string>() { "Buzz", "Buzzinga", "FizzBuzz", "Fizz", "26", "31", 
-                "Buzzinga", "Buzz", "Buzzinga", "FizzBuzz", "Buzz", "Buzzinga", "Buzz"};
+            List<int> numbers = new List<int>() { 5, 7, 15, 24, 30, 31, 45, 335, 357, 359, 514, 533, 124351};
+            List<string> expectedResults = new List<string>() { "Buzz", "Buzzinga", "FizzBuzz", "Fizz", "FizzBuzz", "31", 
+                "FizzBuzz", "FizzBuzz", "Buzzinga", "FizzBuzz", "Buzz", "FizzBuzz", "FizzBuzz"};
             CollectionAssert.AreEqual(expectedResults, FizzBuzzer.Fizzbuzinho(numbers));
         }
 
 
+        //Main, more realistic Test for the method.
         [Test]
         public void TestAlle()
         {
             List<int> exampleNumbers = new List<int>()
             {
-                0, 1, 4, 5, 15, 2, 30, 52, 513,
+                0, 1, 4, 5, 15, 2, 30, 52, 414,
                 13452, 63166, 7272, 4263635, 777777777, 530021
             };
 
             List<string> expectedRes = new List<string>()
             {
                 "Buzzinga", "1", "4", "Buzz", "FizzBuzz", "2", "FizzBuzz", "Buzz", "Fizz",
-                "Fizz", "63166", "Fizz", "FizzBuzz", "Buzzinga", "FizzBuzz"
+                "Buzz", "63166", "Fizz", "FizzBuzz", "Buzzinga", "FizzBuzz"
             };
 
             Assert.AreEqual(expectedRes, FizzBuzzer.Fizzbuzinho(exampleNumbers));
         }
 
+        //Test if exception is thrown after sending null to the method
         [Test]
-        public void testEmptyList()
+        public void testNullList()
         {
             Assert.Throws<NullReferenceException>(() => FizzBuzzer.Fizzbuzinho(null));
         }

@@ -7,6 +7,7 @@ namespace FizzBuzz
     public class FizzBuzzer
     {
 
+        //Method that checks if 5 and 3 are "sticked" to each other in the number
         private static Boolean threeFiveNeighbour(int item)
         {
             String stringItem = item.ToString();
@@ -23,6 +24,7 @@ namespace FizzBuzz
         }
 
        
+        //Method that verifies whether desired character (digit) appears in the number
         private static Boolean checkIfDesiredCharacter(int item, Char c)
         {
             String stringItem = item.ToString();
@@ -37,6 +39,7 @@ namespace FizzBuzz
         }
             
 
+        //Main method, desribed in the 2nd part of lab's instruction
         public static List<String> Fizzbuzinho(List<int> listInt)
         {
             List<String> strLst = new List<String>();
@@ -56,13 +59,13 @@ namespace FizzBuzz
                     {
                         strLst.Add("FizzBuzz");
                     }
-                    else if (item % 3 == 0)
-                    {
-                        strLst.Add("Fizz");
-                    }
                     else if (item % 5 == 0 || checkIfDesiredCharacter(item, '5'))
                     {
                         strLst.Add("Buzz");
+                    }
+                    else if (item % 3 == 0)
+                    {
+                        strLst.Add("Fizz");
                     }
                     else
                     {
