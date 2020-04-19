@@ -29,7 +29,7 @@ namespace MainApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            JsonTextBox.Text = GetJSON.getData();
+            JsonTextBox.Text = GetJSON.getData(CountryJsonLink.addrBY);
         }
     }
 }
