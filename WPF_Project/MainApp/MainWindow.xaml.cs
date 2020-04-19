@@ -13,7 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using log4net;
+
 using JsonProcessing;
+
 
 namespace MainApp
 {
@@ -25,11 +28,13 @@ namespace MainApp
         public MainWindow()
         {
             InitializeComponent();
+            log.Info("Hello There!");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            JsonTextBox.Text = GetJSON.getData(CountryJsonLink.addrBY);
+            JsonTextBox.Text = GetJSON.GetData(CountryJsonLink.addrBY);
+            log.Info("-_______-");
         }
     }
 }
