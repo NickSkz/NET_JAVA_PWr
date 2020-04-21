@@ -15,9 +15,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Margin="20 10 20 0" Grid.Column="0" FontSize="25" Content="Obliczenia" Click="btnOknoObl"/>
-            <Button Margin="10 10 20 0" Grid.Column="2" FontSize="25" Content="Wykresy" Click="btnOknoWykr"/>
+            <Button Margin="10 10 20 0" Grid.Column="1" FontSize="25" Content="Wykresy" Click="btnOknoWykr"/>
+            <Button Margin="10 10 20 0" Grid.Column="2" FontSize="25" Content="TestJSON" Click="logCountryInfo"/>
         </Grid>
     </Grid>
 </Window>

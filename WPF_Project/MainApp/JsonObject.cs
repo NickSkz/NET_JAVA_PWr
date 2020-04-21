@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
+using System.Linq;
+
 namespace JsonProcessing
 {
     //Format defined by API - coutry data is the key to all of this
@@ -9,5 +11,24 @@ namespace JsonProcessing
     {
         public List<CountryInfo> countrydata { get; set; }
         public String stat { get; set; }
+
+
+        //Override hashcode + equals to compare elements 
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+                return false;
+
+            JsonObject other = (JsonObject)obj;
+
+            if (!countrydata.SequenceEqual(other.countrydata))
+                return false;
+            if (!stat.Equals(other.stat))
+                return false;
+
+            return true;
+        }
+
+        public override int GetHashCode() => HashCode.Combine(countrydata, stat);
     }
 }
