@@ -38,30 +38,31 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="1" Text="Liczba spotykanych dziennie osób:"/>
-            <TextBox Grid.Row="1" TextChanged="TextBox_TextChanged"/>
+            <TextBox PreviewTextInput="PrevText" Grid.Row="1"  Name="perDay"/>
             <TextBlock Grid.Row="0" Text="W jakim państwie żyjesz?"/>
             
             <ListBox Grid.Row="0" Grid.Column="1" x:Name="lb" SelectionMode="Single"
-                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                     SelectionChanged="lb_SelectionChanged">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="3" />
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
                 
-                <ListBox>Polska</ListBox>
-                <ListBox>Niemcy</ListBox>
-                <ListBox>Czechy</ListBox>
-                <ListBox>Słowacja</ListBox>
-                <ListBox>Ukraina</ListBox>
-                <ListBox>Białoruś</ListBox>
-                <ListBox>Litwa</ListBox>
-                <ListBox>Rumunia</ListBox>
+                <ListBoxItem>Polska</ListBoxItem>
+                <ListBoxItem>Niemcy</ListBoxItem>
+                <ListBoxItem>Czechy</ListBoxItem>
+                <ListBoxItem>Słowacja</ListBoxItem>
+                <ListBoxItem>Ukraina</ListBoxItem>
+                <ListBoxItem>Białoruś</ListBoxItem>
+                <ListBoxItem>Litwa</ListBoxItem>
+                <ListBoxItem>Rumunia</ListBoxItem>
             </ListBox>
 
             <TextBlock Grid.Row="3" Text="Szansa na to, że trafisz osobę zakażoną wynosi:"/>
-            <Button Grid.Column="1" Grid.Row="2" Margin="70 10" Content="Oblicz" FontSize="20" Click="Button_Click"/>
-            
+            <Button Grid.Column="1" Grid.Row="2" Margin="70 10" Content="Oblicz" FontSize="20" Click="btn_count"/>
+            <Label Grid.Row="3" Grid.Column="1" Name="Chance" FontSize="20"/>
         </Grid>
     </Grid>
 </Window>
