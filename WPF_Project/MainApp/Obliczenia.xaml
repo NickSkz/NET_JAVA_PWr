@@ -32,13 +32,36 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Liczba spotykanych dziennie osób:"/>
-            <TextBox Grid.Row="0" TextChanged="TextBox_TextChanged"/>
+            <TextBlock Grid.Row="1" Text="Liczba spotykanych dziennie osób:"/>
+            <TextBox Grid.Row="1" TextChanged="TextBox_TextChanged"/>
+            <TextBlock Grid.Row="0" Text="W jakim państwie żyjesz?"/>
+            
+            <ListBox Grid.Row="0" Grid.Column="1" x:Name="lb" SelectionMode="Single"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                
+                <ListBox>Polska</ListBox>
+                <ListBox>Niemcy</ListBox>
+                <ListBox>Czechy</ListBox>
+                <ListBox>Słowacja</ListBox>
+                <ListBox>Ukraina</ListBox>
+                <ListBox>Białoruś</ListBox>
+                <ListBox>Litwa</ListBox>
+                <ListBox>Rumunia</ListBox>
+            </ListBox>
+
+            <TextBlock Grid.Row="3" Text="Szansa na to, że trafisz osobę zakażoną wynosi:"/>
+            <Button Grid.Column="1" Grid.Row="2" Margin="70 10" Content="Oblicz" FontSize="20" Click="Button_Click"/>
+            
         </Grid>
     </Grid>
 </Window>
