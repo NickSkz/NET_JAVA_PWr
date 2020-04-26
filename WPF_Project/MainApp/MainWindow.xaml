@@ -6,9 +6,12 @@
         xmlns:local="clr-namespace:MainApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Name="mainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
@@ -19,7 +22,44 @@
             </Grid.ColumnDefinitions>
             <Button Margin="20 10 20 0" Grid.Column="0" FontSize="25" Content="Obliczenia" Click="btnOknoObl"/>
             <Button Margin="10 10 20 0" Grid.Column="1" FontSize="25" Content="Wykresy" Click="btnOknoWykr"/>
-            <Button Margin="10 10 20 0" Grid.Column="2" FontSize="25" Content="TestJSON" Click="logCountryInfo"/>
+            <Button Margin="10 10 20 0" Grid.Column="2" FontSize="25" Content="TODO SMTH" Click="logCountryInfo"/>
         </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" FontSize="20" Content="Poland" Click="Button_Click" />
+            <Button Grid.Column="1" FontSize="20" Content="Germany" Click="Button_Click"/>
+            <Button Grid.Column="2" FontSize="20" Content="Czechia" Click="Button_Click" />
+            <Button Grid.Column="3" FontSize="20" Content="Slovakia" Click="Button_Click" />
+            <Button Grid.Column="4" FontSize="20" Content="Ukraine" Click="Button_Click" />
+            <Button Grid.Column="5" FontSize="20" Content="Belarus" Click="Button_Click"/>
+            <Button Grid.Column="6" FontSize="20" Content="Lithuania" Click="Button_Click"/>
+            <Button Grid.Column="7" FontSize="20" Content="Russia" Click="Button_Click"/>
+        </Grid>
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Name="leftLabel" Grid.Column="0" FontSize="20" Content="" />
+            <Label Name="rightLabel" Grid.Column="1" FontSize="20" Content="" />
+
+        </Grid>
+
+
+
     </Grid>
+
 </Window>

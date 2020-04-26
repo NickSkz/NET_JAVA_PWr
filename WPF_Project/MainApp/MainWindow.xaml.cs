@@ -68,19 +68,49 @@ namespace MainApp
 
         private void logCountryInfo(object sender, RoutedEventArgs e)
         {
-            List<String> vec = new List<String>{
-                CountryJsonLink.addrPL,
-                CountryJsonLink.addrDE,
-                CountryJsonLink.addrCZ,
-                CountryJsonLink.addrSK,
-                CountryJsonLink.addrUA,
-                CountryJsonLink.addrBY,
-                CountryJsonLink.addrLT,
-                CountryJsonLink.addrRU,
-            };
 
-            Random rndCountry = new Random();
-            GetJSON.GetData(vec[rndCountry.Next(0, 8)]);
+        }
+
+        //On Country button click
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //Write Category Label only once - dont waste resources
+            if(leftLabel.Content.Equals(""))
+                showCategories();
+
+            //Use query to get desired country based, on button content
+            Button btnClicked = (Button)sender;
+            JsonObject countryJSON = GetJSON.GetData(string.Join(",", CountryJsonLink.abbreviationMap.Where(n => n.Key.Equals(btnClicked.Content)).Select(n => n.Value).ToArray()));
+
+            //Write all the data from API
+            rightLabel.FontWeight = FontWeight.FromOpenTypeWeight(150);
+            rightLabel.Content = countryJSON.countrydata[0].info.title + "\n" +
+                                countryJSON.countrydata[0].total_new_cases_today + "\n" +
+                                countryJSON.countrydata[0].total_new_deaths_today + "\n" +
+                                countryJSON.countrydata[0].total_cases + "\n" +
+                                countryJSON.countrydata[0].total_deaths + "\n" +
+                                countryJSON.countrydata[0].total_unresolved + "\n" +
+                                countryJSON.countrydata[0].total_recovered + "\n" +
+                                countryJSON.countrydata[0].total_active_cases + "\n" +
+                                countryJSON.countrydata[0].total_serious_cases + "\n" +
+                                countryJSON.countrydata[0].total_danger_rank + "\n";
+
+        }
+
+        //Show categories of data
+        private void showCategories()
+        {
+            leftLabel.FontWeight = FontWeight.FromOpenTypeWeight(400);
+            leftLabel.Content = "Country: \n" +
+                                "New Cases Today: \n" +
+                                "New Deaths Today: \n" +
+                                "Total Cases: \n" +
+                                "Total Deaths: \n" +
+                                "Total Unresolved Cases: \n" +
+                                "Total Recovered: \n" +
+                                "Total Active Cases: \n" +
+                                "Total Serious Cases: \n" +
+                                "Total Danger Rank: ";
         }
     }
 }
