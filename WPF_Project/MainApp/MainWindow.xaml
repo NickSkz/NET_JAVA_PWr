@@ -22,7 +22,7 @@
             </Grid.ColumnDefinitions>
             <Button Margin="20 10 20 0" Grid.Column="0" FontSize="25" Content="Obliczenia" Click="btnOknoObl"/>
             <Button Margin="10 10 20 0" Grid.Column="1" FontSize="25" Content="Wykresy" Click="btnOknoWykr"/>
-            <Button Margin="10 10 20 0" Grid.Column="2" FontSize="25" Content="TODO SMTH" Click="logCountryInfo"/>
+            <Button Margin="10 10 20 0" Grid.Column="2" FontSize="25" Content="Test DB Put/Get" Click="logCountryInfo"/>
         </Grid>
 
         <Grid Grid.Row="2">

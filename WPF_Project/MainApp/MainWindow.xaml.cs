@@ -17,6 +17,8 @@ using log4net;
 
 using JsonProcessing;
 using LoggerSpace;
+using DataBaseProcessing;
+
 using System.Threading;
 
 namespace MainApp
@@ -68,7 +70,8 @@ namespace MainApp
 
         private void logCountryInfo(object sender, RoutedEventArgs e)
         {
-
+            DbAction.putIntoDB(CountryJsonLink.addrPL);
+            DbAction.showFromDB();
         }
 
         //On Country button click
