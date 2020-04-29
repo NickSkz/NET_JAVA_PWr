@@ -55,6 +55,7 @@
 
             <Label Name="leftLabel" Grid.Column="0" FontSize="20" Content="" />
             <Label Name="rightLabel" Grid.Column="1" FontSize="20" Content="" />
+            <Label Name="zeitLabel" Grid.Column="2" FontSize="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="" />
 
         </Grid>
 

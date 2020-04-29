@@ -31,8 +31,8 @@ namespace MainApp
 
         //isRunning flag + Timer - that's executed on another thread
         Boolean isRunning;
-        Timer secondsTimer;
 
+        Thread timerThr;
 
         public MainWindow()
         {
@@ -40,6 +40,21 @@ namespace MainApp
 
             //Set flag
             isRunning = true;
+
+            //Put clock on another thread, communicate by dispatcher
+            timerThr = new Thread(() => {
+                while (isRunning)
+                {
+                    Application.Current.Dispatcher.Invoke((Action)(() =>
+                    {
+                        zeitLabel.Content = "Time: " + DateTime.Now.ToString("HH:mm:ss tt");
+
+                    }));
+                    Thread.Sleep(1000);
+                }        
+            });
+            timerThr.Start();
+
             Logger.log.Info("Hello There!");
         }
 
@@ -70,8 +85,11 @@ namespace MainApp
 
         private void logCountryInfo(object sender, RoutedEventArgs e)
         {
-            DbAction.putIntoDB(CountryJsonLink.addrPL);
-            DbAction.showFromDB();
+            Thread thr = new Thread(() => {
+                DbAction.putIntoDB(CountryJsonLink.addrPL);
+                DbAction.showFromDB();
+            });
+            thr.Start();
         }
 
         //On Country button click

@@ -61,6 +61,8 @@ namespace DataBaseProcessing
 
             };
 
+            Logger.log.Info(countryPL.countrydata[0].total_active_cases);
+
             //Perform on DB
             using (var db = new HistoricalDataDBContext())
             {
