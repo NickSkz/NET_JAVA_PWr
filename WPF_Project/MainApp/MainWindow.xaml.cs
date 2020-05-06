@@ -12,12 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 using log4net;
 
 using JsonProcessing;
 using LoggerSpace;
 using DataBaseProcessing;
+using FWMovieParser;
 
 using System.Threading;
 
@@ -40,6 +42,8 @@ namespace MainApp
 
             //Set flag
             isRunning = true;
+
+            FWParser.getHtml();
 
             //Put clock on another thread, communicate by dispatcher
             timerThr = new Thread(() => {
@@ -96,8 +100,15 @@ namespace MainApp
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Write Category Label only once - dont waste resources
-            if(leftLabel.Content.Equals(""))
+            if (leftLabel.Content.Equals(""))
                 showCategories();
+
+            if (movieLabel.Content.Equals("") && headerLabel.Content.Equals("") && header2Label.Content.Equals(""))
+            {
+                headerLabel.Content = "Bored at Home?";
+                header2Label.Content = "Check out Netflix Top 10 according to IMDB!";
+                movieLabel.Content = string.Join("\n", FWParser.top10Movies);
+            }
 
             //Use query to get desired country based, on button content
             Button btnClicked = (Button)sender;

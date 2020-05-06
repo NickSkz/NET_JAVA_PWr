@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="900">
     <Grid Name="mainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -49,13 +49,16 @@
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Label Name="leftLabel" Grid.Column="0" FontSize="20" Content="" />
             <Label Name="rightLabel" Grid.Column="1" FontSize="20" Content="" />
             <Label Name="zeitLabel" Grid.Column="2" FontSize="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="" />
+            <Label Name="headerLabel" Grid.Column="2" Height="35" FontSize="20" VerticalAlignment="Top" Content="" />
+            <Label Name="header2Label" Grid.Column="2" Height="30" FontSize="15" VerticalAlignment="Top" Content="" Margin="0,35,0,0" />
+            <Label Name="movieLabel" Grid.Column="2" Height="220" FontSize="15" VerticalAlignment="Center" Content="" />
 
         </Grid>
 
