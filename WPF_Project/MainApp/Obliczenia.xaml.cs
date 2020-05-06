@@ -29,7 +29,7 @@ namespace MainApp
         private void btn_count(object sender, RoutedEventArgs e)
         {
             int NumOfP= Int32.Parse(perDay.Text); // liczba ludzi spotykanych jednego dnia
-            int PerInContry;
+            //int PerInContry;
             JsonObject CountryData = GetJSON.GetData(Country);
             int TotalCases= CountryData.countrydata[0].total_cases;
             Chance.Content = TotalCases/NumOfP;
