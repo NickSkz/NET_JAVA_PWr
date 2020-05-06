@@ -96,6 +96,11 @@ namespace DataBaseProcessing
                 }
             }
         }
+        public static DataBaseProcessing.HistoricalDataDBContext getData()
+        {
+            var db = new HistoricalDataDBContext();
+            return db;
+        }
 
     }
     
