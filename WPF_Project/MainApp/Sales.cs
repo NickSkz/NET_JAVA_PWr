@@ -15,10 +15,7 @@ namespace MainApp
 
         public DateTime Date
         {
-            get
-            {
-                return date;
-            }
+            get {   return date;    }
             set
             {
                 date = value;
@@ -27,10 +24,7 @@ namespace MainApp
         }
         public int Total_active_cases
         {
-            get
-            {
-                return total_active_cases;
-            }
+            get {   return total_active_cases;    }
             set
             {
                 total_active_cases = value;
@@ -41,10 +35,7 @@ namespace MainApp
 
         public int Total_new_cases
         {
-            get
-            {
-                return total_new_cases;
-            }
+            get {   return total_new_cases;    }
             set
             {
                 total_new_cases = value;
