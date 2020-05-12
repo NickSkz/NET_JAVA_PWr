@@ -24,18 +24,20 @@
             </chart:SfChart.Legend>
 
             <chart:LineSeries ItemsSource="{Binding Data}" 
-            XBindingPath="Date" 
-            YBindingPath="Total_active_cases"
-                                  Label="Total active cases"/>
+                              XBindingPath="Date" 
+                              YBindingPath="Total_active_cases"
+                              Label="Total active cases"                              
+                              ListenPropertyChange="True"/>
 
             <chart:LineSeries ItemsSource="{Binding Data}" 
-            XBindingPath="Date" 
-            YBindingPath="Total_new_cases"
-                              Label="Total new cases"/>
+                              XBindingPath="Date" 
+                              YBindingPath="Total_new_cases"
+                              Label="Total new cases"
+                              ListenPropertyChange="True"/>
         </chart:SfChart>
         
         <Button Content="Dodaj do wykresu"
-                    Grid.Row="1" Click="btnClick"/>
+                Grid.Row="1" Click="btnClick"/>
         <Label Grid.Row="2" Name="dane"/>
     </Grid>
 </Window>
