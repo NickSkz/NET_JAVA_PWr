@@ -34,6 +34,9 @@ To get COVID-19 Statistics App on your PC, clone this repository or download fol
 </p>
 
 ## Authors
+You got any feedback? Contact us: 
+- Mikołaj Skubisz - example@example.com
+- Przemek Kołodziej - example@example.com
 
 ## Licence
-
+Our product is completely free to use. If you want to contribute to the project with your own code, contact us.
