@@ -26,7 +26,7 @@ Statistics are presented in given format.
 ### Graphs
 Check out COVID-19 growth tendency for Poland.  
 <p align="center">
-  <img align="center" width="75%" height="75%" src="Images/graph.png">
+  <img align="center" width="75%" height="75%" src="Images/graphs.png">
 </p>  
    
 ### Risk calculator
