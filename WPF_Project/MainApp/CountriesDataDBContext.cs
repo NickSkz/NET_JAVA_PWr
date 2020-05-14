@@ -40,13 +40,13 @@ namespace DataBaseProcessing
     public class DbAction
     {
         //Insert record
-        public static void putIntoDB(string countryAddr)
+        public static String putIntoDB(string countryAddr)
         {
             //Assumption: Only data form PL
             if (!countryAddr.Equals(CountryJsonLink.addrPL))
             {
                 Logger.log.Error("DB can only contain data from Poland :(");
-                return;
+                return "DB can only contain data from Poland :(";
             }
 
             JsonObject countryPL = GetJSON.GetData(countryAddr);
@@ -71,7 +71,7 @@ namespace DataBaseProcessing
                 {
                     db.Datas.Add(todayPoland);
                     db.SaveChanges();
-                    return;
+                    return "";
                 }
 
                 //Insert only if data from the following day does not exist
@@ -81,6 +81,8 @@ namespace DataBaseProcessing
                     db.SaveChanges();
                 }
             }
+
+            return "";
         }
 
         //Show with the help of overridden ToString()
