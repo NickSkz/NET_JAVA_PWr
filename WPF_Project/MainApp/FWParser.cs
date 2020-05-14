@@ -6,6 +6,8 @@ using System.Linq;
 
 using HtmlAgilityPack;
 
+using LoggerSpace;
+using System.Threading.Tasks;
 
 namespace FWMovieParser
 {
@@ -19,7 +21,26 @@ namespace FWMovieParser
             var url = "https://www.imdb.com/list/ls056789192/";
 
             var httpClient = new HttpClient();
-            var html = await httpClient.GetStringAsync(url);
+
+            String html;
+            try
+            {
+                html = await httpClient.GetStringAsync(url);
+            }
+            catch(HttpRequestException e)
+            {
+                html = await httpClient.GetStringAsync("example.com");
+                Logger.log.Error("GetStringAsync Error: " + e.Message);
+            }
+            catch(Exception e)
+            {
+                html = await httpClient.GetStringAsync("example.com");
+                Logger.log.Error("GetStringAsync Error: " + e.Message);
+            }
+            finally
+            {
+                Logger.log.Info("GetStringAsync invoked!");
+            }
 
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(html);

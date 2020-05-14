@@ -40,6 +40,8 @@ namespace MainApp
         {
             InitializeComponent();
 
+            Logger.log.Info("App started!");
+
             //Set flag
             isRunning = true;
 
@@ -59,7 +61,6 @@ namespace MainApp
             });
             timerThr.Start();
 
-            Logger.log.Info("Hello There!");
         }
 
 
@@ -79,21 +80,19 @@ namespace MainApp
         {
             isRunning = false;
 
-            //TODO : EXTREMELY DANGEROUS PIECE OF CODE
-            //THIS IS TEMPORARY SOLUTION
-            //PROBLEM: Timer thread wants to execute UI Dispatcher even though its already gone (Timer thread closes after UI Thread)
             Thread.Sleep(300);
-
+            Logger.log.Info("App closed!");
             base.OnClosed(e);
         }
 
         private void logCountryInfo(object sender, RoutedEventArgs e)
         {
-            Thread thr = new Thread(() => {
-                DbAction.putIntoDB(CountryJsonLink.addrPL);
-                DbAction.showFromDB();
-            });
-            thr.Start();
+            if (movieLabel.Content.Equals("") && headerLabel.Content.Equals("") && header2Label.Content.Equals(""))
+            {
+                headerLabel.Content = "Bored at Home?";
+                header2Label.Content = "Check out Netflix Top 10 according to IMDB!";
+                movieLabel.Content = string.Join("\n", FWParser.top10Movies);
+            }
         }
 
         //On Country button click
@@ -102,13 +101,6 @@ namespace MainApp
             //Write Category Label only once - dont waste resources
             if (leftLabel.Content.Equals(""))
                 showCategories();
-
-            if (movieLabel.Content.Equals("") && headerLabel.Content.Equals("") && header2Label.Content.Equals(""))
-            {
-                headerLabel.Content = "Bored at Home?";
-                header2Label.Content = "Check out Netflix Top 10 according to IMDB!";
-                movieLabel.Content = string.Join("\n", FWParser.top10Movies);
-            }
 
             //Use query to get desired country based, on button content
             Button btnClicked = (Button)sender;

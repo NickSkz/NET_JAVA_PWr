@@ -57,7 +57,7 @@
                 <ListBoxItem>Ukraina</ListBoxItem>
                 <ListBoxItem>Białoruś</ListBoxItem>
                 <ListBoxItem>Litwa</ListBoxItem>
-                <ListBoxItem>Rumunia</ListBoxItem>
+                <ListBoxItem>Rosja</ListBoxItem>
             </ListBox>
 
             <TextBlock Grid.Row="3" Text="Szansa na to, że trafisz osobę zakażoną wynosi:"/>

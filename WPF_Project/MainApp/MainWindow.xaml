@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="900">
+        Title="MainWindow" Background="Beige"  Height="500" Width="900">
     <Grid Name="mainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -20,9 +20,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Margin="20 10 20 0" Grid.Column="0" FontSize="25" Content="Obliczenia" Click="btnOknoObl"/>
-            <Button Margin="10 10 20 0" Grid.Column="1" FontSize="25" Content="Wykresy" Click="btnOknoWykr"/>
-            <Button Margin="10 10 20 0" Grid.Column="2" FontSize="25" Content="Test DB Put/Get" Click="logCountryInfo"/>
+            <Button Margin="20 10 20 0" Grid.Column="0" FontSize="25" Content="Risk Calculator" Click="btnOknoObl"/>
+            <Button Margin="10 10 20 0" Grid.Column="1" FontSize="25" Content="Graphs" Click="btnOknoWykr"/>
+            <Button Margin="10 10 20 0" Grid.Column="2" FontSize="25" Content="Bored at home?" Click="logCountryInfo"/>
         </Grid>
 
         <Grid Grid.Row="2">
@@ -54,11 +54,13 @@
             </Grid.ColumnDefinitions>
 
             <Label Name="leftLabel" Grid.Column="0" FontSize="20" Content="" />
-            <Label Name="rightLabel" Grid.Column="1" FontSize="20" Content="" />
+            <Label Name="rightLabel" Grid.Column="1" FontSize="20" Content="" FontStyle="Italic" Foreground="DarkGreen"/>
             <Label Name="zeitLabel" Grid.Column="2" FontSize="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="" />
             <Label Name="headerLabel" Grid.Column="2" Height="35" FontSize="20" VerticalAlignment="Top" Content="" />
             <Label Name="header2Label" Grid.Column="2" Height="30" FontSize="15" VerticalAlignment="Top" Content="" Margin="0,35,0,0" />
             <Label Name="movieLabel" Grid.Column="2" Height="220" FontSize="15" VerticalAlignment="Center" Content="" />
+
+            <GridSplitter ResizeDirection="Columns" Background="SteelBlue" Grid.Column="1" Height="Auto" Width="2" HorizontalAlignment="Stretch" Margin="138,0,10,0"/>
 
         </Grid>
 

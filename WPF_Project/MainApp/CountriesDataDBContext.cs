@@ -61,8 +61,6 @@ namespace DataBaseProcessing
 
             };
 
-            Logger.log.Info(countryPL.countrydata[0].total_active_cases);
-
             //Perform on DB
             using (var db = new HistoricalDataDBContext())
             {
@@ -88,14 +86,8 @@ namespace DataBaseProcessing
         //Show with the help of overridden ToString()
         public static void showFromDB()
         {
-            using (var db = new HistoricalDataDBContext())
-            {
-                foreach (var data in db.Datas)
-                {
-                    Logger.log.Info(data);
-                }
-            }
         }
+
         public static DataBaseProcessing.HistoricalDataDBContext getData()
         {
             var db = new HistoricalDataDBContext();

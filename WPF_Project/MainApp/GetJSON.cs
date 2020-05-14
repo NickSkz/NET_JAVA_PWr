@@ -19,14 +19,18 @@ namespace JsonProcessing
             var client = new WebClient();
             //Get raw JSON, Deserialize it into object
             String trueJson = client.DownloadString(desiredCountry);
-            JsonObject countryInfo = JsonConvert.DeserializeObject<JsonObject>(trueJson);
 
-            //Show in logs basic data
-            Logger.log.Info("Country: " + countryInfo.countrydata[0].info.title);
-            Logger.log.Info("New Cases Today: " + countryInfo.countrydata[0].total_new_cases_today);
-            Logger.log.Info("New Deaths Today: " + countryInfo.countrydata[0].total_new_deaths_today);
-            Logger.log.Info("Total Cases: " + countryInfo.countrydata[0].total_cases);
-            Logger.log.Info("Total Deaths: " + countryInfo.countrydata[0].total_deaths);
+            JsonObject countryInfo;
+
+            try
+            {
+                countryInfo = JsonConvert.DeserializeObject<JsonObject>(trueJson);
+            }
+            catch(Exception e)
+            {
+                countryInfo = null;
+                Logger.log.Error(e.Message);
+            };
 
             return countryInfo;
         }
