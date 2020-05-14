@@ -10,36 +10,36 @@ Our App provides many functionalities including:
 - Graphs showing active cases and total cases throught days for Poland
 - Contagion risk for person, based on user's given input
 - For quarantine boredom - top 10 movies availible on Netflix (according to IMDB)
-
+  
 ### Layout
-Choose from the country bar which data you want to display  
+Choose from the country bar which data you want to display.
 <p align="center">
   <img align="center" width="75%" height="75%" src="Images/layout.png">
-</p>
-
+</p>  
+  
 ### Statistics
-Statistics are presented in given format:  
+Statistics are presented in given format.  
 <p align="center">
   <img align="center" width="75%" height="75%" src="Images/statistics.png">
-</p>
-
+</p>  
+  
 ### Graphs
-Check out COVID-19 growth tendency for Poland  
+Check out COVID-19 growth tendency for Poland.  
 <p align="center">
   <img align="center" width="75%" height="75%" src="Images/graph.png">
-</p>
-  
+</p>  
+   
 ### Risk calculator
-Check what's the chance of meeting infected person in your country  
+App evaluates what's the chance of meeting infected person in your country.  
 <p align="center">
   <img align="center" width="75%" height="75%" src="Images/riskCalculator.png">
-</p>
-  
+</p>  
+    
 ### Bored at home?
 Check out Netflix Top 10.  
 <p align="center">
   <img align="center" width="75%" height="75%" src="Images/netflixTop.png">
-</p>
+</p>  
   
 ## Installation
 
