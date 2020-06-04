@@ -20,7 +20,7 @@ public class MainFrame
         Plansza plansza = new Plansza();
 
         JFrames.gameFrame.setMinimumSize(new Dimension(Consts.mainX, Consts.mainY + 35));
-        JFrames.gameFrame.setBackground(Color.BLACK);
+        JFrames.gameFrame.setBackground(Color.BLUE);
         JFrames.gameFrame.setResizable(false);
         JFrames.gameFrame.setVisible(false);
         JFrames.gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
