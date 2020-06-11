@@ -26,6 +26,12 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
     private Snake snake;
     private Food food;
 
+    private boolean gameIsOn;
+    private boolean isFirstMove;
+
+    private int zeit;
+    private int points;
+
     public Plansza()
     {
         setLayout(null);
@@ -36,6 +42,9 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
         food = new Food("res/food.png");
         snake = new Snake("res/head.png", "res/body.png");
 
+        gameIsOn = true;
+        isFirstMove = true;
+
         timer = new Timer(100,this);
         timer.start();
     }
@@ -44,23 +53,19 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setColor(Color.BLUE);
+
+        g.setColor(Color.BLACK);
         g.fillRect(0, 0, Consts.mainX, Consts.mainY);
         g.setColor(Color.GRAY);
         g.fillRect(Consts.LeftWall, Consts.TopWall, Consts.RightWall, Consts.BottomWall);
 
-        pointsLabel = new JLabel("Points: ");
-        pointsLabel.setFont(new Font("Serif", Font.PLAIN, 32));
-        pointsLabel.setForeground(Color.WHITE);
-        pointsLabel.setBounds(0, 0, 200, 40);
-        add(pointsLabel);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 22));
+        g.setColor(Color.CYAN);
+
+        g.drawString("Points: " + points, 10, 20);
 
 
-        timeLabel = new JLabel("Time: ");
-        timeLabel.setFont(new Font("Serif", Font.PLAIN, 32));
-        timeLabel.setForeground(Color.WHITE);
-        timeLabel.setBounds(Consts.mainX - 150, 0, 100, 40);
-        add(timeLabel);
+        g.drawString("Time: " + String.valueOf(zeit), 435, 20);
 
 
         menuButton = new JButton("Menu");
@@ -74,9 +79,11 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
         add(menuButton);
 
 
+
         snake.head.paintIcon(this, g, snake.snakePos.get(0).X, snake.snakePos.get(0).Y);
         for (int i = 1; i < snake.snakeLength; ++i)
             snake.body.paintIcon(this, g, snake.snakePos.get(i).X, snake.snakePos.get(i).Y);
+
 
 
         checkPoint();
@@ -84,7 +91,9 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
 
         if (checkCollision())
         {
-            try{
+            gameIsOn = false;
+            try
+            {
                 Thread.sleep(3000);
             }
             catch (Exception e)
@@ -210,6 +219,29 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+
+        if(isFirstMove)
+        {
+            Thread zeitThread = new Thread(){
+                public void run(){
+                    while(gameIsOn){
+                        try
+                        {
+                            Thread.sleep(1000);
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+                        ++zeit;
+                    }
+                }
+            };
+            zeitThread.start();
+            isFirstMove = false;
+        }
+
+
         if(e.getKeyCode() == KeyEvent.VK_RIGHT && snake.direction != Snake.Direction.LEFT)
             snake.direction = Snake.Direction.RIGHT;
 
@@ -233,6 +265,7 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
         if(snake.snakePos.get(0).equals(food.foodPosition.get(food.possIdx)))
         {
             ++snake.snakeLength;
+            ++points;
             snake.snakePos.add(new com.example.AIR.Objects.Point(0, 0));
             food.possIdx = food.getNextPos();
 
@@ -256,6 +289,10 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
         snake.direction = Snake.Direction.NONE;
         food = new Food("res/food.png");
         snake = new Snake("res/head.png", "res/body.png");
+        points = 0;
+        zeit = 0;
+        isFirstMove = true;
+        gameIsOn = true;
         repaint();
     }
 
