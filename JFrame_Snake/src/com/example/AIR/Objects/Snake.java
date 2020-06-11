@@ -1,90 +1,50 @@
 package com.example.AIR.Objects;
 
 import com.example.AIR.Constants.Consts;
+import com.example.AIR.Panels.Plansza;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.geom.Point2D;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+public class Snake{
 
-enum direction{top , bottom, left, right}
+    public enum Direction
+    {
+        TOP, BOTTOM, LEFT, RIGHT, NONE
+    };
 
-public class Snake {
-    Block head;
-    List<Block> body= new ArrayList<Block>();
-    direction dir;
+    public ImageIcon head;
+    public ImageIcon body;
 
-    void Snake(){
-        Block blok=new Block();
-        head.set(10,10);
-        blok.set(10,9);
-        body.add(blok);
-        blok.set(10,8);
-        body.add(blok);
-        blok.set(10,7);
-        body.add(blok);
-        dir=direction.bottom;
-    }
+    public Direction direction = Direction.NONE;
 
-    boolean checkHor(int y){
-        if(y>50 || y<0){
-            return true;
-        }
-        return body.stream().anyMatch(i -> i.y == y);
-    }
-    boolean checkVer(int x){
-        if(x>50 || x<0){
-            return true;
-        }
-        return body.stream().anyMatch(i -> i.x == x);
-    }
+    public int snakeLength = 2;
+    private ArrayList<Point> startPos = new ArrayList<>(Arrays.asList(
+            new Point(32 + Consts.LeftWall, 0 + Consts.TopWall), new Point(0 + Consts.LeftWall, 0 + Consts.TopWall)
+    ));
 
-    void move(){
-        for (int i = 1; i > body.size(); i++) {
-            body.set(i,body.get(i+1));
-        }
-        body.set(body.size()+1, head);
 
-        switch (dir){
-            case top:
-                if (checkVer(head.y - 1) == false) {
-                    head.moveUp();
-                }
-            case bottom:
-                if(checkVer(head.y+1)==false){
-                    head.moveDown();
-                }
-            case left:
-                if(checkHor(head.x-1)==false) {
-                    head.moveLeft();
-                }
-            case right:
-                if (checkHor(head.x+1)==false) {
-                    head.moveRight();
-                }
+    public ArrayList<Point> snakePos = new ArrayList<>();
+
+
+    public Snake(String headFileName, String bodyFileName)
+    {
+        head = new ImageIcon(headFileName);
+        body = new ImageIcon(bodyFileName);
+
+        for(int i = 0; i < snakeLength; ++i)
+        {
+            snakePos.add(startPos.get(i));
         }
     }
 
-    void eat(){
-        body.add(head);
-        switch (dir){
-            case top:       head.moveUp();
-            case bottom:    head.moveDown();
-            case left:      head.moveLeft();
-            case right:     head.moveRight();
-        }
-    }
-
-    public int wypisz_cokolwiek(){
-        return head.x;
-    }
-    public Rectangle position(){
-        Rectangle rectangle= new Rectangle();
-        rectangle.x=head.x*10+ Consts.LeftWall;
-        rectangle.y=head.y*10+ Consts.TopWall;
-        rectangle.height=10;
-        rectangle.width=10;
-        return rectangle;
-    }
 }

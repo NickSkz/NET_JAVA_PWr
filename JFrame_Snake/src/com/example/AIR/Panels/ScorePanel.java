@@ -32,10 +32,10 @@ public class ScorePanel extends JPanel
 
         String[] players = {
                 "Marian Paździoch: 42 points",
-                "Waldemar Putin: 39 points",
+                "Mieczysław Putin: 39 points",
                 "Jarosław Kaczyński: 35 points",
                 "Johnny Sins: 24 points",
-                "Ron Jeremy: 20 points"
+                "Mike Tyson: 20 points"
         };
         scoreList = new JList<>(players);
         scoreList.setBounds(100, 100, 200, 500);
