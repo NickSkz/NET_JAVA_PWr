@@ -42,8 +42,7 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
 
 
     @Override
-    protected void paintComponent(Graphics g)
-    {
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.BLUE);
         g.fillRect(0, 0, Consts.mainX, Consts.mainY);
@@ -67,29 +66,35 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
         menuButton = new JButton("Menu");
         menuButton.setBounds(Consts.mainX - 115, Consts.mainY - 40, 100, 40);
         menuButton.addActionListener((e) -> {
+            setDefault();
             JFrames.gameFrame.setVisible(false);
+            JFrames.gameFrame.dispose();
             JFrames.startFrame.setVisible(true);
         });
         add(menuButton);
 
 
         snake.head.paintIcon(this, g, snake.snakePos.get(0).X, snake.snakePos.get(0).Y);
-
-        for(int i = 1; i < snake.snakeLength; ++i)
-        {
+        for (int i = 1; i < snake.snakeLength; ++i)
             snake.body.paintIcon(this, g, snake.snakePos.get(i).X, snake.snakePos.get(i).Y);
+
+
+        checkPoint();
+        food.foodGraphix.paintIcon(this, g, food.foodPosition.get(food.possIdx).X, food.foodPosition.get(food.possIdx).Y);
+
+        if (checkCollision())
+        {
+            try{
+                Thread.sleep(3000);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            setDefault();
         }
 
-        if(snake.snakePos.get(0).equals(food.foodPosition.get(food.possIdx)))
-        {
-            ++snake.snakeLength;
-            snake.snakePos.add(new com.example.AIR.Objects.Point(0, 0));
-            food.possIdx = food.getNextPos();
-        }
-        else
-        {
-            food.foodGraphix.paintIcon(this, g, food.foodPosition.get(food.possIdx).X, food.foodPosition.get(food.possIdx).Y);
-        }
 
         g.dispose();
     }
@@ -110,9 +115,7 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
                     snake.snakePos.get(i).X = snake.snakePos.get(i-1).X;
 
                     if(snake.snakePos.get(i).Y < 0 + Consts.TopWall)
-                    {
                         snake.snakePos.get(i).Y = 512 + Consts.TopWall;
-                    }
                 }
 
                 snake.snakePos.get(0).Y = snake.snakePos.get(0).Y - 32;
@@ -134,9 +137,8 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
                     snake.snakePos.get(i).Y = snake.snakePos.get(i-1).Y;
 
                     if(snake.snakePos.get(i).X  < Consts.LeftWall)
-                    {
                         snake.snakePos.get(i).X  = 512 + Consts.LeftWall;
-                    }
+
                 }
 
                 snake.snakePos.get(0).X = snake.snakePos.get(0).X - 32;
@@ -158,9 +160,7 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
                     snake.snakePos.get(i).Y = snake.snakePos.get(i-1).Y;
 
                     if(snake.snakePos.get(i).Y > 512 + Consts.TopWall)
-                    {
                         snake.snakePos.get(i).Y = 0 + Consts.TopWall;
-                    }
                 }
 
                 snake.snakePos.get(0).Y = snake.snakePos.get(0).Y + 32;
@@ -182,9 +182,7 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
                     snake.snakePos.get(i).Y = snake.snakePos.get(i-1).Y;
 
                     if(snake.snakePos.get(i).X > 512 + Consts.LeftWall)
-                    {
                         snake.snakePos.get(i).X = 0 + Consts.LeftWall;
-                    }
                 }
 
                 snake.snakePos.get(0).X = snake.snakePos.get(0).X + 32;
@@ -213,25 +211,52 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_RIGHT && snake.direction != Snake.Direction.LEFT)
-        {
             snake.direction = Snake.Direction.RIGHT;
-        }
+
         if(e.getKeyCode() == KeyEvent.VK_LEFT && snake.direction != Snake.Direction.RIGHT)
-        {
             snake.direction = Snake.Direction.LEFT;
-        }
+
         if(e.getKeyCode() == KeyEvent.VK_UP && snake.direction != Snake.Direction.BOTTOM)
-        {
             snake.direction = Snake.Direction.TOP;
-        }
+
         if(e.getKeyCode() == KeyEvent.VK_DOWN && snake.direction != Snake.Direction.TOP)
-        {
             snake.direction = Snake.Direction.BOTTOM;
-        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
 
     }
+
+
+    private boolean checkPoint(){
+        if(snake.snakePos.get(0).equals(food.foodPosition.get(food.possIdx)))
+        {
+            ++snake.snakeLength;
+            snake.snakePos.add(new com.example.AIR.Objects.Point(0, 0));
+            food.possIdx = food.getNextPos();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean checkCollision(){
+        for(int i = 1; i < snake.snakeLength; ++i)
+        {
+            if(snake.snakePos.get(0).equals(snake.snakePos.get(i)))
+                return true;
+        }
+        return false;
+    }
+
+
+    private void setDefault(){
+        snake.direction = Snake.Direction.NONE;
+        food = new Food("res/food.png");
+        snake = new Snake("res/head.png", "res/body.png");
+        repaint();
+    }
+
 }

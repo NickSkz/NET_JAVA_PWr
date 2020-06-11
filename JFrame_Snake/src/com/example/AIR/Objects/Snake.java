@@ -42,9 +42,8 @@ public class Snake{
         body = new ImageIcon(bodyFileName);
 
         for(int i = 0; i < snakeLength; ++i)
-        {
             snakePos.add(startPos.get(i));
-        }
+
     }
 
 }
