@@ -3,7 +3,9 @@ package com.example.AIR.Panels;
 import com.example.AIR.Constants.Consts;
 import com.example.AIR.Frames.JFrames;
 import com.example.AIR.Objects.Food;
+import com.example.AIR.Objects.Obstacle;
 import com.example.AIR.Objects.Snake;
+import org.apache.commons.lang3.SerializationUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,11 +27,14 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
 
     private Snake snake;
     private Food food;
+    private Obstacle obstacle;
 
     private boolean gameIsOn;
     private boolean isFirstMove;
 
+    Thread zeitThread;
     private int zeit;
+
     private int points;
 
     public Plansza()
@@ -41,6 +46,7 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
 
         food = new Food("res/food.png");
         snake = new Snake("res/head.png", "res/body.png");
+        obstacle = new Obstacle("res/obstacle.png", 3);
 
         gameIsOn = true;
         isFirstMove = true;
@@ -63,20 +69,23 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
         g.setColor(Color.CYAN);
 
         g.drawString("Points: " + points, 10, 20);
-
-
         g.drawString("Time: " + String.valueOf(zeit), 435, 20);
 
 
         menuButton = new JButton("Menu");
         menuButton.setBounds(Consts.mainX - 115, Consts.mainY - 40, 100, 40);
         menuButton.addActionListener((e) -> {
+            gameIsOn = false;
             setDefault();
             JFrames.gameFrame.setVisible(false);
             JFrames.gameFrame.dispose();
             JFrames.startFrame.setVisible(true);
         });
         add(menuButton);
+
+
+        for(int i : obstacle.indexes)
+            obstacle.obstacleGraphix.paintIcon(this, g, obstacle.obstaclePos.get(i).X, obstacle.obstaclePos.get(i).Y);
 
 
 
@@ -120,8 +129,7 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
 
                 for(int i = snake.snakeLength - 1; i > 0; --i)
                 {
-                    snake.snakePos.get(i).Y = snake.snakePos.get(i-1).Y;
-                    snake.snakePos.get(i).X = snake.snakePos.get(i-1).X;
+                    snake.snakePos.set(i, SerializationUtils.clone(snake.snakePos.get(i-1)));
 
                     if(snake.snakePos.get(i).Y < 0 + Consts.TopWall)
                         snake.snakePos.get(i).Y = 512 + Consts.TopWall;
@@ -142,8 +150,7 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
 
                 for(int i = snake.snakeLength - 1; i > 0; --i)
                 {
-                    snake.snakePos.get(i).X = snake.snakePos.get(i-1).X;
-                    snake.snakePos.get(i).Y = snake.snakePos.get(i-1).Y;
+                    snake.snakePos.set(i, SerializationUtils.clone(snake.snakePos.get(i-1)));
 
                     if(snake.snakePos.get(i).X  < Consts.LeftWall)
                         snake.snakePos.get(i).X  = 512 + Consts.LeftWall;
@@ -165,8 +172,7 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
 
                 for(int i = snake.snakeLength - 1; i > 0; --i)
                 {
-                    snake.snakePos.get(i).X = snake.snakePos.get(i-1).X;
-                    snake.snakePos.get(i).Y = snake.snakePos.get(i-1).Y;
+                    snake.snakePos.set(i, SerializationUtils.clone(snake.snakePos.get(i-1)));
 
                     if(snake.snakePos.get(i).Y > 512 + Consts.TopWall)
                         snake.snakePos.get(i).Y = 0 + Consts.TopWall;
@@ -187,8 +193,7 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
 
                 for(int i = snake.snakeLength - 1; i > 0; --i)
                 {
-                    snake.snakePos.get(i).X = snake.snakePos.get(i-1).X;
-                    snake.snakePos.get(i).Y = snake.snakePos.get(i-1).Y;
+                    snake.snakePos.set(i, SerializationUtils.clone(snake.snakePos.get(i-1)));
 
                     if(snake.snakePos.get(i).X > 512 + Consts.LeftWall)
                         snake.snakePos.get(i).X = 0 + Consts.LeftWall;
@@ -222,7 +227,7 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
 
         if(isFirstMove)
         {
-            Thread zeitThread = new Thread(){
+            zeitThread = new Thread(){
                 public void run(){
                     while(gameIsOn){
                         try
@@ -281,6 +286,12 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
             if(snake.snakePos.get(0).equals(snake.snakePos.get(i)))
                 return true;
         }
+
+        for(int i : obstacle.indexes)
+        {
+            if(snake.snakePos.get(0).equals(obstacle.obstaclePos.get(i)))
+                return true;
+        }
         return false;
     }
 
@@ -289,8 +300,19 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
         snake.direction = Snake.Direction.NONE;
         food = new Food("res/food.png");
         snake = new Snake("res/head.png", "res/body.png");
+        obstacle = new Obstacle("res/obstacle.png", 3);
         points = 0;
+
+        try
+        {
+            zeitThread.join();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         zeit = 0;
+
         isFirstMove = true;
         gameIsOn = true;
         repaint();

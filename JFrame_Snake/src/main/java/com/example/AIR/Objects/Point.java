@@ -1,8 +1,9 @@
 package com.example.AIR.Objects;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Point {
+public class Point implements Serializable {
 
     public int X;
     public int Y;
@@ -29,4 +30,5 @@ public class Point {
     public int hashCode() {
         return Objects.hash(X, Y);
     }
+
 }
