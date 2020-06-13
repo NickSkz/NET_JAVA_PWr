@@ -2,6 +2,7 @@ package com.example.AIR.Panels;
 
 import com.example.AIR.Constants.Consts;
 import com.example.AIR.Frames.JFrames;
+import com.example.AIR.Frames.ScoreFrame;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -65,6 +66,7 @@ public class StartPanel extends JPanel
         scoreboardButton.setBounds(0, buttonsBeginOffset + scoreboardButtonPos * 70, Consts.beginX, 70);
         scoreboardButton.addActionListener( (e) ->
         {
+            ScoreFrame.startWindow();
             JFrames.scoreFrame.setVisible(true);
         });
         add(scoreboardButton);
@@ -74,8 +76,7 @@ public class StartPanel extends JPanel
         exitButton.setBounds(0, buttonsBeginOffset + exitButtonPos * 70, Consts.beginX, 70);
         exitButton.addActionListener( (e) ->
         {
-            JFrames.startFrame.setVisible(false);
-            JFrames.gameFrame.setVisible(true);
+            System.exit(0);
         });
         add(exitButton);
 
@@ -84,8 +85,7 @@ public class StartPanel extends JPanel
         aboutButton.setBounds(0, buttonsBeginOffset + aboutButtonPos * 70, Consts.beginX, 70);
         aboutButton.addActionListener( (e) ->
         {
-            JFrames.startFrame.setVisible(false);
-            JFrames.gameFrame.setVisible(true);
+            JFrames.aboutFrame.setVisible(true);
         });
         add(aboutButton);
     }

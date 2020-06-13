@@ -13,9 +13,12 @@ public class Consts
     public static final int mainX = 560;
     public static final int mainY = 560;
 
-    public static final int scoreX = 400;
+    public static final int scoreX = 620;
     public static final int scoreY = 700;
 
     public static final int overX = 400;
     public static final int overY = 400;
+
+    public static final int aboutX = 328;
+    public static final int aboutY = 150;
 }

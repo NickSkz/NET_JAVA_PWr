@@ -3,6 +3,7 @@ package com.example.AIR.Panels;
 import com.example.AIR.Constants.Consts;
 import com.example.AIR.Frames.GameOverFrame;
 import com.example.AIR.Frames.JFrames;
+import com.example.AIR.UserInfo.DBConnect;
 import com.example.AIR.UserInfo.Stats;
 
 import javax.swing.*;
@@ -20,9 +21,41 @@ public class GameOverPanel extends JPanel {
     JButton tryAgainButton;
     JTextField nickName;
 
+    DBConnect connection;
+
     public GameOverPanel()
     {
         setLayout(null);
+        connection = new DBConnect();
+
+        nickName = new JTextField();
+        nickName.setBounds(60, 230, 240, 20);
+        add(nickName);
+
+        tryAgainButton = new JButton("TRY AGAIN!");
+        tryAgainButton.setBounds(60, 270, 240, 50);
+        tryAgainButton.addActionListener((e) ->
+        {
+            JFrames.gameFrame.setVisible(true);
+
+            if(!nickName.getText().isEmpty())
+            {
+                System.out.println("DSESSE");
+                connection.insertEntry(nickName.getText());
+                nickName.setText("");
+            }
+
+            pointsLabel.setText("");
+            zeitLabel.setText("");
+            overallLabel.setText("");
+
+            saveScoreLabel.setText("");
+            gameOverLabel.setText("");
+
+            JFrames.gameOverFrame.setVisible(false);
+            JFrames.gameOverFrame.dispose();
+        });
+        add(tryAgainButton);
     }
 
     @Override
@@ -71,30 +104,6 @@ public class GameOverPanel extends JPanel {
         add(saveScoreLabel);
 
 
-
-
-        nickName = new JTextField();
-        nickName.setBounds(60, 230, 240, 20);
-        add(nickName);
-
-
-        tryAgainButton = new JButton("TRY AGAIN!");
-        tryAgainButton.setBounds(60, 270, 240, 50);
-        tryAgainButton.addActionListener((e) ->
-        {
-            JFrames.gameFrame.setVisible(true);
-
-            pointsLabel.setText("");
-            zeitLabel.setText("");
-            overallLabel.setText("");
-
-            saveScoreLabel.setText("");
-            gameOverLabel.setText("");
-
-            JFrames.gameOverFrame.setVisible(false);
-            JFrames.gameOverFrame.dispose();
-        });
-        add(tryAgainButton);
-
     }
+
 }

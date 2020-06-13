@@ -36,6 +36,7 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
 
     Thread zeitThread;
     private int zeit;
+    private boolean timeRuns;
 
     private int points;
 
@@ -232,6 +233,7 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
         {
             zeitThread = new Thread(){
                 public void run(){
+                    timeRuns = true;
                     while(gameIsOn){
                         try
                         {
@@ -306,14 +308,18 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
         obstacle = new Obstacle("res/obstacle.png", 3);
         points = 0;
 
-        try
+        if(timeRuns)
         {
-            zeitThread.join();
+            try
+            {
+                zeitThread.join();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        timeRuns = false;
         zeit = 0;
 
         isFirstMove = true;
