@@ -9,4 +9,5 @@ public class JFrames
     public static JFrame scoreFrame;
     public static JFrame gameOverFrame;
     public static JFrame aboutFrame;
+    public static JFrame championSelectFrame;
 }

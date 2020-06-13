@@ -56,8 +56,7 @@ public class StartPanel extends JPanel
         playButton.setBounds(0, buttonsBeginOffset + playButtonPos * 70, Consts.beginX, 70);
         playButton.addActionListener( (e) ->
         {
-            JFrames.startFrame.setVisible(false);
-            JFrames.gameFrame.setVisible(true);
+            JFrames.championSelectFrame.setVisible(true);
         });
         add(playButton);
 
@@ -97,10 +96,10 @@ public class StartPanel extends JPanel
         titleLabel.setBounds(0, 0, Consts.beginX, 70);
         add(titleLabel);
 
-        ImageIcon headIcon = new ImageIcon("res/golota.jpg");
+        ImageIcon headIcon = new ImageIcon("res/title.png");
         Image imgHead = headIcon.getImage();
-        Image sclaedImgHead = imgHead.getScaledInstance(150, 200, Image.SCALE_SMOOTH);
-        ImageIcon trueImage = new ImageIcon(sclaedImgHead);
+        Image scaledImgHead = imgHead.getScaledInstance(150, 200, Image.SCALE_SMOOTH);
+        ImageIcon trueImage = new ImageIcon(scaledImgHead);
 
         imageLabel = new JLabel();
         imageLabel.setBounds(122, 65, 150, 200);

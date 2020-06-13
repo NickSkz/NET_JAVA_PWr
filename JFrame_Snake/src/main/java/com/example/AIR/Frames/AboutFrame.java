@@ -19,11 +19,11 @@ public class AboutFrame {
         JFrames.aboutFrame = new JFrame("About us");
         AboutPanel aboutPanel = new AboutPanel();
 
-        JFrames.aboutFrame .setMinimumSize(new Dimension(Consts.aboutX, Consts.aboutY));
-        JFrames.aboutFrame .setBackground(Color.BLACK);
-        JFrames.aboutFrame .setResizable(false);
-        JFrames.aboutFrame .setVisible(false);
+        JFrames.aboutFrame.setMinimumSize(new Dimension(Consts.aboutX, Consts.aboutY));
+        JFrames.aboutFrame.setBackground(Color.BLACK);
+        JFrames.aboutFrame.setResizable(false);
+        JFrames.aboutFrame.setVisible(false);
         JFrames.aboutFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        JFrames.aboutFrame .add(aboutPanel);
+        JFrames.aboutFrame.add(aboutPanel);
     }
 }

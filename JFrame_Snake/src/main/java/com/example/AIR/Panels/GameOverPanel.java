@@ -40,7 +40,6 @@ public class GameOverPanel extends JPanel {
 
             if(!nickName.getText().isEmpty())
             {
-                System.out.println("DSESSE");
                 connection.insertEntry(nickName.getText());
                 nickName.setText("");
             }

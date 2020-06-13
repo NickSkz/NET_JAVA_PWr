@@ -1,6 +1,7 @@
 package com.example.AIR.Panels;
 
 import com.example.AIR.Constants.Consts;
+import com.example.AIR.Frames.ChampionSelectFrame;
 import com.example.AIR.Frames.GameOverFrame;
 import com.example.AIR.Frames.JFrames;
 import com.example.AIR.Objects.Food;
@@ -19,9 +20,6 @@ import java.awt.event.KeyListener;
 
 
 public class Plansza extends JPanel implements ActionListener, KeyListener {
-
-    private JLabel pointsLabel;
-    private JLabel timeLabel;
 
     private JButton menuButton;
 
@@ -48,7 +46,7 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
         setFocusTraversalKeysEnabled(false);
 
         food = new Food("res/food.png");
-        snake = new Snake("res/head.png", "res/body.png");
+        snake = new Snake(ChampionSelectPanel.headName, "res/body.png");
         obstacle = new Obstacle("res/obstacle.png", 3);
 
         gameIsOn = true;
@@ -304,7 +302,7 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
     private void setDefault(){
         snake.direction = Snake.Direction.NONE;
         food = new Food("res/food.png");
-        snake = new Snake("res/head.png", "res/body.png");
+        snake = new Snake(ChampionSelectPanel.headName, "res/body.png");
         obstacle = new Obstacle("res/obstacle.png", 3);
         points = 0;
 

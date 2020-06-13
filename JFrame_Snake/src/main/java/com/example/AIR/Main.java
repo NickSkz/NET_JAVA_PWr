@@ -1,6 +1,7 @@
 package com.example.AIR;
 
 import com.example.AIR.Frames.*;
+import com.example.AIR.Panels.ChampionSelectPanel;
 
 public  class Main {
 
@@ -13,8 +14,8 @@ public  class Main {
     private static void initializeFrames()
     {
         StartFrame.startWindow();
-        MainFrame.startWindow();
         AboutFrame.startWindow();
+        ChampionSelectFrame.startWindow();
         GameOverFrame.startWindow();
     }
 

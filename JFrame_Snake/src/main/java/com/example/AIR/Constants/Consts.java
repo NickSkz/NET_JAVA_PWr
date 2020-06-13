@@ -21,4 +21,7 @@ public class Consts
 
     public static final int aboutX = 328;
     public static final int aboutY = 150;
+
+    public static final int championX = 560;
+    public static final int championY = 430;
 }
