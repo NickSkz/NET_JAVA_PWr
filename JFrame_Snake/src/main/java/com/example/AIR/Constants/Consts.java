@@ -15,4 +15,7 @@ public class Consts
 
     public static final int scoreX = 400;
     public static final int scoreY = 700;
+
+    public static final int overX = 400;
+    public static final int overY = 400;
 }

@@ -1,10 +1,12 @@
 package com.example.AIR.Panels;
 
 import com.example.AIR.Constants.Consts;
+import com.example.AIR.Frames.GameOverFrame;
 import com.example.AIR.Frames.JFrames;
 import com.example.AIR.Objects.Food;
 import com.example.AIR.Objects.Obstacle;
 import com.example.AIR.Objects.Snake;
+import com.example.AIR.UserInfo.Stats;
 import org.apache.commons.lang3.SerializationUtils;
 
 import javax.swing.*;
@@ -101,16 +103,17 @@ public class Plansza extends JPanel implements ActionListener, KeyListener {
         if (checkCollision())
         {
             gameIsOn = false;
-            try
-            {
-                Thread.sleep(3000);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+
+            Stats.points = points;
+            Stats.zeit = zeit;
+            Stats.overall = points * zeit;
 
             setDefault();
+
+            JFrames.gameOverFrame.setVisible(true);
+
+            JFrames.gameFrame.setVisible(false);
+            JFrames.gameFrame.dispose();
         }
 
 
